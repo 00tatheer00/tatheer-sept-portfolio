@@ -112,13 +112,13 @@ export default function ContactSection() {
     <section ref={sectionRef} id="contact" className="relative py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
         
-        {/* Floating 3D Lavender Chrome Swirl Sculpture in Bottom Right */}
+        {/* Floating 3D Lavender Chrome Swirl Sculpture in Bottom Right (Transparent PNG) */}
         <div
           ref={sculptureRef}
           className="absolute -bottom-12 -right-6 sm:-right-14 w-52 h-52 sm:w-72 sm:h-72 pointer-events-none z-20 opacity-95 drop-shadow-[0_25px_45px_rgba(139,92,246,0.25)] will-change-transform"
         >
           <Image
-            src="/assets/iridescent_swirl_3d.jpg"
+            src="/assets/iridescent_swirl_3d.png"
             alt="3D Iridescent Swirl Sculpture"
             fill
             className="object-contain"
