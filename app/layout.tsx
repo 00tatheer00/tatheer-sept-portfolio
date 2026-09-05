@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { inter, spaceGrotesk } from "@/lib/fonts";
+import { inter, spaceGrotesk, caveat } from "@/lib/fonts";
 import { baseMetadata, structuredData } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 import { SmoothScroll } from "@/components/interaction/SmoothScroll";
@@ -14,7 +14,7 @@ import "./globals.css";
 export const metadata: Metadata = baseMetadata;
 
 export const viewport: Viewport = {
-  themeColor: "#0A0A0B",
+  themeColor: "#07090E",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(inter.variable, spaceGrotesk.variable)}
+      className={cn(inter.variable, spaceGrotesk.variable, caveat.variable)}
       suppressHydrationWarning
     >
       <head>

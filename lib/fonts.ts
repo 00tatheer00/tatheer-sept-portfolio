@@ -1,4 +1,4 @@
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Caveat } from "next/font/google";
 
 /**
  * Inter — Primary body font.
@@ -18,4 +18,14 @@ export const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-space-grotesk",
+});
+
+/**
+ * Caveat — Signature script font matching reference.
+ * Used for "Engineer Educator Entrepreneur" and author signature.
+ */
+export const caveat = Caveat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-script",
 });

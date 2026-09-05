@@ -1,66 +1,62 @@
-import { PreEntry } from "@/components/sections/PreEntry";
 import { Hero } from "@/components/sections/Hero";
 import { Identity } from "@/components/sections/Identity";
 import { Engineer } from "@/components/sections/Engineer";
-import { Educator } from "@/components/sections/Educator";
-import { Entrepreneur } from "@/components/sections/Entrepreneur";
-import { Journey } from "@/components/sections/Journey";
-import { Impact } from "@/components/sections/Impact";
-import { WhatIBuild } from "@/components/sections/WhatIBuild";
-import { EESTStory } from "@/components/sections/EESTStory";
 import { FeaturedWork } from "@/components/sections/FeaturedWork";
+import { Journey } from "@/components/sections/Journey";
+import { WhatIBuild } from "@/components/sections/WhatIBuild";
+import { Entrepreneur } from "@/components/sections/Entrepreneur";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
 
 /**
- * Homepage — cinematic interactive portfolio experience.
- * Streamlined visual narrative:
- * WHO IS HE → HOW HE THINKS → HOW HE TEACHES → HOW HE BUILDS VENTURES →
- * CAREER TRAJECTORY → VERIFIED IMPACT → TECHNICAL STACK → FLAGSHIP PLATFORM →
- * SELECTED WORK → LET'S BUILD
+ * Homepage — Master Redesign.
+ * Strictly Faithful to Visual Source of Truth (Reference Image):
+ *
+ * 01. Hero (S Tatheer Hussain, portrait with glowing aura, role triad, CTAs)
+ * 02. Identity (I BUILD. I TEACH. I LEAD. + Software, People, Opportunities)
+ * 03. Engineer (HOW I THINK AS AN ENGINEER + 6-stage process line)
+ * 04. Featured Work (Real Projects. Real Impact. + 3 project cards)
+ * 05. The Journey (Student to Founder + 5 milestone nodes)
+ * 06. Technical Expertise (Turned Into Real Solutions + 6 domain cards)
+ * 07. Organizations (Building Beyond Code + Tech4Edges & EEST + script quote)
+ * 08. Kind Words (What People Say + testimonial carousel)
+ * 09. Final CTA (HAVE A PROBLEM WORTH SOLVING? + aurora landscape)
+ * 10. Footer (STH logo, navigation, socials, signature tagline)
  */
 export default function HomePage() {
   return (
     <>
-      {/* 01 — Branded entrance */}
-      <PreEntry />
-
-      <main>
-        {/* 02 — Immersive hero */}
+      <main id="main-content">
+        {/* 01 — Hero */}
         <Hero />
 
-        {/* 03 — Identity statement */}
+        {/* 02 — I BUILD. I TEACH. I LEAD. */}
         <Identity />
 
-        {/* 04 — Engineer chapter (6-stage pipeline) */}
+        {/* 03 — How I Think As An Engineer */}
         <Engineer />
 
-        {/* 05 — Educator chapter (pedagogy & ecosystem) */}
-        <Educator />
-
-        {/* 06 — Entrepreneur chapter (Tech4Edges & EEST) */}
-        <Entrepreneur />
-
-        {/* 07 — Career journey (student to founder) */}
-        <Journey />
-
-        {/* 08 — Impact numbers */}
-        <Impact />
-
-        {/* 09 — Technical domains & stack layers */}
-        <WhatIBuild />
-
-        {/* 10 — Flagship software case study: EEST LMS */}
-        <EESTStory />
-
-        {/* 11 — Featured projects from Project Lab */}
+        {/* 04 — Featured Work */}
         <FeaturedWork />
 
-        {/* 12 — Final call-to-action */}
+        {/* 05 — The Journey */}
+        <Journey />
+
+        {/* 06 — Technical Expertise */}
+        <WhatIBuild />
+
+        {/* 07 — Organizations Creating Impact */}
+        <Entrepreneur />
+
+        {/* 08 — Kind Words */}
+        <Testimonials />
+
+        {/* 09 — Final CTA */}
         <FinalCTA />
       </main>
 
-      {/* 13 — Footer */}
+      {/* 10 — Footer */}
       <Footer />
     </>
   );

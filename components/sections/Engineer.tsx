@@ -1,228 +1,165 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/animation/Reveal";
-import { cn } from "@/lib/utils";
+import { staggerContainer, fadeInUp } from "@/lib/animations";
 
-interface EngineeringPhase {
-  id: string;
-  step: string;
-  title: string;
-  focus: string;
-  principle: string;
-  artifacts: string[];
-}
-
-const engineeringStages: EngineeringPhase[] = [
+const processStages = [
   {
-    id: "problem",
     step: "01",
-    title: "PROBLEM",
-    focus: "Domain Boundary & Constraint Deconstruction",
-    principle: "Understand the core business bottleneck before writing a single line of code. Quantify latency, throughput, and user constraints.",
-    artifacts: ["Requirements Matrix", "Domain Boundaries", "Success Metrics"],
+    title: "Understand",
+    subtitle: "The Problem",
+    icon: (
+      <svg className="w-4 h-4 text-[#00D2FF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="16" x2="12" y2="12" />
+        <line x1="12" y1="8" x2="12.01" y2="8" />
+      </svg>
+    ),
   },
   {
-    id: "architecture",
     step: "02",
-    title: "ARCHITECTURE",
-    focus: "Data Modeling & Contract Design",
-    principle: "Schema correctness beats clever algorithms. Establish relational models, strict API specifications, and clear component responsibilities.",
-    artifacts: ["ERD Schemas", "OpenAPI / Typed Contracts", "State Trees"],
+    title: "Design",
+    subtitle: "Architecture",
+    icon: (
+      <svg className="w-4 h-4 text-[#38BDF8]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+        <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+        <line x1="6" y1="6" x2="6.01" y2="6" />
+        <line x1="6" y1="18" x2="6.01" y2="18" />
+      </svg>
+    ),
   },
   {
-    id: "implementation",
     step: "03",
-    title: "IMPLEMENTATION",
-    focus: "Type-Safe, Modular Execution",
-    principle: "Write predictable, readable software with explicit error boundaries, strong TypeScript typing, and defensive programming practices.",
-    artifacts: ["Next.js App Router", "Node.js / Express Services", "PostgreSQL / Prisma"],
+    title: "Build",
+    subtitle: "& Implement",
+    icon: (
+      <svg className="w-4 h-4 text-[#3B82F6]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+      </svg>
+    ),
   },
   {
-    id: "testing",
     step: "04",
-    title: "TESTING",
-    focus: "Contract Validation & Regression Defense",
-    principle: "If it is not tested, it is already broken. Exercise critical paths with unit tests, API integration tests, and end-to-end flows.",
-    artifacts: ["Unit & Integration Suites", "E2E Playwright Flows", "Type-Check Gates"],
+    title: "Test",
+    subtitle: "& Validate",
+    icon: (
+      <svg className="w-4 h-4 text-[#8B5CF6]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <polyline points="9 12 11 14 15 10" />
+      </svg>
+    ),
   },
   {
-    id: "deployment",
     step: "05",
-    title: "DEPLOYMENT",
-    focus: "Automated Pipelines & Zero-Downtime Releases",
-    principle: "Deployments should be routine, repeatable, and automated via declarative CI/CD, containerization, and safe configuration management.",
-    artifacts: ["Docker Containers", "Vercel / AWS Infrastructure", "GitHub Actions CI"],
+    title: "Deploy",
+    subtitle: "& Scale",
+    icon: (
+      <svg className="w-4 h-4 text-[#A855F7]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+        <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+      </svg>
+    ),
   },
   {
-    id: "improvement",
     step: "06",
-    title: "IMPROVEMENT",
-    focus: "Telemetry, Observability & Refinement",
-    principle: "Production is where software truly begins. Monitor p99 response times, audit database queries, gather telemetry, and iterate.",
-    artifacts: ["Performance Profiling", "Query Optimization", "User Feedback Loops"],
+    title: "Improve",
+    subtitle: "& Evolve",
+    icon: (
+      <svg className="w-4 h-4 text-[#EC4899]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M23 4v6h-6" />
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+      </svg>
+    ),
   },
 ];
 
 /**
- * 04 — Engineer Section (Rebuilt).
- * Visualizes the 6-stage engineering thinking pipeline:
- * PROBLEM → ARCHITECTURE → IMPLEMENTATION → TESTING → DEPLOYMENT → IMPROVEMENT
+ * 04 — Engineer Section: HOW I THINK AS AN ENGINEER
+ * Strictly Faithful to Reference Design.
+ * Features:
+ * - Left: "HOW I THINK / AS AN ENGINEER" (gradient) + paragraph + "View My Approach ➔"
+ * - Right: 6-stage continuous horizontal process node pipeline with connecting line
  */
 export function Engineer() {
-  const [activeStage, setActiveStage] = useState<number>(0);
-
-  const selected = engineeringStages[activeStage];
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section
       id="engineer"
-      className="relative overflow-hidden bg-[var(--color-background-alt)] py-28 sm:py-36 lg:py-44"
+      className="relative overflow-hidden py-24 sm:py-32 bg-[#06080F] border-t border-[#1E293B]/60"
     >
-      {/* Subtle architectural border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border)] to-transparent" />
-
       <Container>
-        {/* Section Header */}
-        <div className="mb-14 sm:mb-20">
-          <Reveal>
-            <div className="flex items-center gap-3 mb-3">
-              <span className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-[var(--color-accent)]">
-                01 / Engineering Discipline
-              </span>
-              <span className="h-px w-10 bg-[var(--color-border)]" />
-              <span className="font-mono text-[0.6rem] uppercase tracking-wider text-[var(--color-foreground-subtle)]">
-                Methodology &amp; Systems Thinking
-              </span>
-            </div>
-          </Reveal>
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-14 items-center">
+          {/* Left Column: Heading, Statement, CTA */}
+          <div className="lg:col-span-4">
+            <Reveal delay={0.1}>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4">
+                HOW I THINK <br />
+                <span className="text-gradient-cyan-violet">AS AN ENGINEER</span>
+              </h2>
+            </Reveal>
 
-          <Reveal delay={0.1}>
-            <h2 className="text-[clamp(2.5rem,6.5vw,5.5rem)] font-bold uppercase leading-[0.95] tracking-[-0.03em] text-[var(--color-foreground)] mb-6">
-              How I Think <br />
-              <span className="text-[var(--color-accent)]">As An Engineer</span>
-            </h2>
-          </Reveal>
+            <Reveal delay={0.25}>
+              <p className="text-sm leading-relaxed text-[#94A3B8] mb-8 max-w-sm">
+                Engineering is a structured way of turning real-world problems into scalable solutions. I focus on clarity, simplicity and long-term impact.
+              </p>
+            </Reveal>
 
-          <Reveal delay={0.2}>
-            <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--color-foreground-secondary)]">
-              Engineering is not the act of stitching together random packages. It is a disciplined progression from ambiguous business requirements into resilient, verified, and observable production software.
-            </p>
-          </Reveal>
-        </div>
-
-        {/* 6-Stage Interactive Engineering Pipeline System */}
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-10 items-start">
-          {/* Left Column: Stage Selector List */}
-          <div className="lg:col-span-5 space-y-2">
-            <div className="font-mono text-[0.62rem] uppercase tracking-[0.25em] text-[var(--color-foreground-subtle)] mb-3 px-2">
-              The 6-Phase Engineering Pipeline
-            </div>
-
-            {engineeringStages.map((stage, idx) => {
-              const isActive = activeStage === idx;
-              return (
-                <button
-                  key={stage.id}
-                  type="button"
-                  onClick={() => setActiveStage(idx)}
-                  className={cn(
-                    "w-full text-left rounded-xl p-4 sm:p-5 transition-all duration-300 border flex items-center justify-between group",
-                    isActive
-                      ? "border-[var(--color-accent)] bg-[var(--color-surface)] shadow-lg shadow-black/40"
-                      : "border-[var(--color-border)]/70 bg-[var(--color-surface)]/40 hover:border-[var(--color-border-hover)] hover:bg-[var(--color-surface)]"
-                  )}
-                >
-                  <div className="flex items-center gap-4">
-                    <span
-                      className={cn(
-                        "font-mono text-xs font-bold transition-colors",
-                        isActive ? "text-[var(--color-accent)]" : "text-[var(--color-foreground-subtle)] group-hover:text-[var(--color-foreground-muted)]"
-                      )}
-                    >
-                      {stage.step}
-                    </span>
-                    <div>
-                      <div
-                        className={cn(
-                          "font-heading font-bold tracking-tight text-base sm:text-lg transition-colors",
-                          isActive ? "text-[var(--color-foreground)]" : "text-[var(--color-foreground-secondary)] group-hover:text-[var(--color-foreground)]"
-                        )}
-                      >
-                        {stage.title}
-                      </div>
-                      <div className="text-xs text-[var(--color-foreground-subtle)] hidden sm:block truncate max-w-[240px]">
-                        {stage.focus}
-                      </div>
-                    </div>
-                  </div>
-
-                  <span
-                    className={cn(
-                      "font-mono text-xs transition-transform duration-200",
-                      isActive ? "text-[var(--color-accent)] translate-x-1" : "text-[var(--color-border)] group-hover:text-[var(--color-foreground-subtle)]"
-                    )}
-                  >
-                    →
-                  </span>
-                </button>
-              );
-            })}
+            <Reveal delay={0.4}>
+              <Link
+                href="/experience#system-architecture"
+                data-cursor="button"
+                className="inline-flex items-center gap-2 rounded-full border border-[#1E293B] bg-[#0E1322] px-6 py-2.5 text-xs font-semibold text-white transition-all duration-300 hover:border-[#00D2FF]/50 hover:bg-[#151C30]"
+              >
+                <span>View My Approach</span>
+                <span className="text-sm font-bold">➔</span>
+              </Link>
+            </Reveal>
           </div>
 
-          {/* Right Column: Architectural Detail Inspector */}
-          <div className="lg:col-span-7">
-            <div className="relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-10 shadow-2xl backdrop-blur-md">
-              {/* Telemetry Header */}
-              <div className="flex items-center justify-between border-b border-[var(--color-border)] pb-4 mb-6">
-                <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]" />
-                  <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[var(--color-accent)]">
-                    PHASE {selected.step} {"//"} {selected.title}
+          {/* Right Column: 6-Stage Process Pipeline */}
+          <div className="lg:col-span-8 relative">
+            {/* Subtle connecting line across nodes on desktop */}
+            <div className="hidden sm:block absolute top-6 left-6 right-6 h-px bg-gradient-to-r from-[#00D2FF]/40 via-[#8B5CF6]/40 to-[#EC4899]/40 z-0" />
+
+            <motion.div
+              variants={shouldReduceMotion ? undefined : staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-2 relative z-10"
+            >
+              {processStages.map((stage) => (
+                <motion.div
+                  key={stage.step}
+                  variants={shouldReduceMotion ? undefined : fadeInUp}
+                  className="group flex flex-col items-center text-center p-2.5 rounded-xl transition-all duration-300 hover:bg-[#0E1322]/60"
+                >
+                  {/* Node Circle */}
+                  <div className="relative mb-3 flex h-11 w-11 items-center justify-center rounded-full border border-[#1E293B] bg-[#0A0E1A] shadow-lg transition-all duration-300 group-hover:border-[#00D2FF]/60 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(0,210,255,0.25)]">
+                    {stage.icon}
+                  </div>
+
+                  {/* Step number */}
+                  <span className="font-mono text-[0.6rem] text-[#64748B] mb-1 font-semibold">
+                    {stage.step}
                   </span>
-                </div>
-                <span className="font-mono text-[0.62rem] uppercase tracking-wider text-[var(--color-foreground-subtle)]">
-                  ACTIVE_INSPECTOR
-                </span>
-              </div>
 
-              {/* Phase Title & Focus */}
-              <div className="mb-6">
-                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--color-foreground)] mb-2">
-                  {selected.focus}
-                </h3>
-                <p className="text-base sm:text-lg leading-relaxed text-[var(--color-foreground-secondary)]">
-                  {selected.principle}
-                </p>
-              </div>
-
-              {/* Engineering Artifacts & Deliverables */}
-              <div className="border-t border-[var(--color-border)]/80 pt-6">
-                <span className="font-mono text-[0.62rem] uppercase tracking-[0.25em] text-[var(--color-foreground-subtle)] block mb-3">
-                  Key Architectural Deliverables
-                </span>
-                <div className="flex flex-wrap gap-2.5">
-                  {selected.artifacts.map((art) => (
-                    <span
-                      key={art}
-                      className="rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-3.5 py-2 font-mono text-xs text-[var(--color-foreground)]"
-                    >
-                      <span className="text-[var(--color-accent)] mr-2">›</span>
-                      {art}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Flow progression mini-footer */}
-              <div className="mt-8 pt-6 border-t border-[var(--color-border)]/60 flex items-center justify-between text-xs text-[var(--color-foreground-subtle)] font-mono">
-                <span>STAGE {selected.step} OF 06</span>
-                <span className="text-[var(--color-accent)]">
-                  {activeStage < 5 ? `NEXT: ${engineeringStages[activeStage + 1].title}` : "LIFECYCLE CONTINUOUS LOOP"}
-                </span>
-              </div>
-            </div>
+                  {/* Title & Subtitle */}
+                  <div className="font-heading font-bold text-xs text-white leading-tight">
+                    {stage.title}
+                  </div>
+                  <div className="text-[0.68rem] text-[#94A3B8] leading-tight mt-0.5">
+                    {stage.subtitle}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </Container>
