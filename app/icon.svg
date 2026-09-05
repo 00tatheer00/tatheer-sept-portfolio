@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="6" fill="#0A0A0B"/>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="5.5" fill="none" stroke="#C8A96E" stroke-opacity="0.4"/>
+  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="monospace, sans-serif" font-weight="900" font-size="14" fill="#C8A96E" letter-spacing="-0.5">TH</text>
+</svg>

@@ -1,0 +1,192 @@
+import type { Experience } from "@/types";
+
+/**
+ * Professional experience entries for S Tatheer Hussain.
+ * Strictly verified factual history across engineering, education, and venture leadership.
+ */
+export const experiences: Experience[] = [
+  {
+    id: "tech4edges",
+    company: "Tech4Edges",
+    role: "Founder & CEO / Senior Software Developer",
+    type: "founding",
+    startDate: "2023",
+    isCurrent: true,
+    location: "Peshawar, Pakistan",
+    description:
+      "Directing software engineering, product architecture, and client digital transformations. Leading the design and delivery of modern full-stack web applications, business software, and AI-enabled workflows.",
+    highlights: [
+      "Architected multi-tenant SaaS platforms and responsive modern web systems.",
+      "Engineered full-stack solutions integrating React, Next.js, Node.js, and cloud data stores.",
+      "Built AI-assisted automation pipelines to enhance client operational workflows.",
+      "Directed end-to-end technical cycles from client discovery to production deployment.",
+    ],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Node.js",
+      "Tailwind CSS",
+      "PostgreSQL",
+      "Prisma",
+      "Docker",
+      "AI APIs",
+    ],
+    companyUrl: "https://tatheer.dev",
+  },
+  {
+    id: "eest",
+    company: "Emerging Edge School of Technology (EEST)",
+    role: "Director & Technical Architect",
+    type: "full-time",
+    startDate: "2023",
+    isCurrent: true,
+    location: "Peshawar, Pakistan",
+    description:
+      "Leading technical curriculum strategy and developer training while serving as primary software architect for the proprietary EEST Learning Management System (LMS) Portal.",
+    highlights: [
+      "Solely designed, engineered, and actively maintain the custom EEST LMS Portal handling course distribution and evaluation.",
+      "Structured comprehensive practical curricula bridging academic knowledge with production software engineering.",
+      "Oversaw educational milestones including 200+ students successfully completing Module 1 certification.",
+      "Established standard developer evaluation criteria based on real-world coding deliverables.",
+    ],
+    technologies: [
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST APIs",
+      "Authentication",
+      "Tailwind CSS",
+    ],
+  },
+  {
+    id: "uop-lecturer",
+    company: "University of Peshawar",
+    role: "Visiting Lecturer — Department of Computer Science",
+    type: "part-time",
+    startDate: "2023",
+    isCurrent: true,
+    location: "Peshawar, Pakistan",
+    description:
+      "Instructing undergraduate computer science students in core programming paradigms, object-oriented software engineering principles, and computational logic.",
+    highlights: [
+      "Conducted lecture and practical laboratory sessions for Object-Oriented Programming (OOP) in C++ and Java.",
+      "Designed algorithmic lab exercises, assignment frameworks, and project-based evaluation criteria.",
+      "Mentored CS undergraduates on clean code conventions, memory management, and data structure implementations.",
+    ],
+    technologies: [
+      "C++",
+      "Java",
+      "Object-Oriented Programming",
+      "Data Structures",
+      "Algorithm Design",
+    ],
+  },
+  {
+    id: "navttc",
+    company: "NAVTTC (National Vocational & Technical Training Commission)",
+    role: "Advanced Web Application Trainer",
+    type: "contract",
+    startDate: "2022",
+    isCurrent: false,
+    location: "Peshawar, Pakistan",
+    description:
+      "Delivered intensive full-stack web application engineering programs focused on turning students into production-ready software developers.",
+    highlights: [
+      "Taught full lifecycle development covering HTML, CSS, JavaScript, React, and TypeScript on the frontend.",
+      "Trained students on backend architectures using Node.js, Express.js, PHP, and Laravel.",
+      "Guided database modeling across MongoDB (NoSQL) and relational SQL systems.",
+      "Instructed version control with Git/GitHub, cloud deployments on Firebase, and Supabase integration.",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "PHP",
+      "Laravel",
+      "MongoDB",
+      "SQL",
+      "Firebase",
+      "Supabase",
+      "Git",
+    ],
+  },
+  {
+    id: "smit",
+    company: "Saylani Mass IT Training (SMIT)",
+    role: "MERN Stack Instructor",
+    type: "contract",
+    startDate: "2022",
+    isCurrent: false,
+    location: "Peshawar, Pakistan",
+    description:
+      "Led high-impact developer training tracks in modern JavaScript and full-stack MERN architecture for aspiring software engineers.",
+    highlights: [
+      "Trained and mentored 500+ students across MERN stack fundamentals, APIs, and modern frontend tools.",
+      "Awarded Best Teacher Appreciation Award from SMIT International in 2025 in recognition of pedagogical excellence.",
+      "Guided students through portfolio-worthy capstone web applications with secure REST APIs.",
+      "Instilled Git workflows, collaborative PR reviews, and deployment practices.",
+    ],
+    technologies: [
+      "JavaScript (ES6+)",
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST APIs",
+      "Git",
+      "GitHub",
+    ],
+  },
+  {
+    id: "arfa-karim",
+    company: "Arfa Karim Technology Incubator",
+    role: "Full Stack PHP Trainer",
+    type: "contract",
+    startDate: "2022",
+    isCurrent: false,
+    location: "Peshawar, Pakistan",
+    description:
+      "Delivered practical web development modules emphasizing backend systems, MVC architecture, and enterprise PHP development.",
+    highlights: [
+      "Conducted specialized training in PHP, Laravel framework, and relational database systems.",
+      "Emphasized practical software architectures, database indexing, and secure CRUD operations.",
+      "Participated in developer webinars, incubator seminars, and technical mentoring sessions.",
+    ],
+    technologies: ["PHP", "Laravel", "MySQL", "MVC Architecture", "REST APIs"],
+  },
+  {
+    id: "international-educator",
+    company: "International Technology Workshops",
+    role: "International Developer Educator",
+    type: "contract",
+    startDate: "2023",
+    isCurrent: false,
+    location: "Arizona, USA (Remote / Online)",
+    description:
+      "Delivered international technical developer workshops and educational masterclasses in modern web engineering.",
+    highlights: [
+      "Presented advanced concepts in modern JavaScript ecosystems and component architectures.",
+      "Conducted live architecture walkthroughs and practical code reviews for international developer cohorts.",
+    ],
+    technologies: ["React", "JavaScript", "Full-Stack Web Architecture"],
+  },
+  {
+    id: "mirror-of-society",
+    company: "Mirror of Society",
+    role: "Media Secretary",
+    type: "part-time",
+    startDate: "2021",
+    isCurrent: false,
+    location: "Peshawar, Pakistan",
+    description:
+      "Coordinated public media communication, event documentation, and community messaging initiatives.",
+    highlights: [
+      "Managed digital publications, social media announcements, and press communications.",
+      "Documented community workshops and public service technology forums.",
+    ],
+    technologies: ["Digital Media", "Public Communications", "Event Coordination"],
+  },
+];
