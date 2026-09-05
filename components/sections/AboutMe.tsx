@@ -69,8 +69,8 @@ export function AboutMe() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 </div>
-                <span className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">15+</span>
-                <span className="text-[11px] sm:text-xs font-medium text-[#64748B]">Happy Clients</span>
+                <span className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">500+</span>
+                <span className="text-[11px] sm:text-xs font-medium text-[#64748B]">Engineers Mentored</span>
               </div>
             </motion.div>
           </div>
@@ -78,7 +78,7 @@ export function AboutMe() {
           {/* Right Column: Narrative + Action Button (5 cols) */}
           <div className="lg:col-span-5 flex flex-col justify-between pt-2">
             <p className="text-sm sm:text-base leading-relaxed text-[#64748B] mb-8">
-              I&apos;m a digital product engineer &amp; designer with 5+ years of experience turning complex problems into simple, intuitive, and engaging digital systems. I believe in user-centered design, robust scalable architecture, clean aesthetics, and thoughtful engineering details that empower teams and users alike.
+              I am S Tatheer Hussain, a software engineer, technical educator, and founder based in Peshawar, Pakistan. Progression from student to developer, trainer, university lecturer, and founder of Tech4Edges &amp; EEST, I turn complex engineering problems into scalable, production-ready software while mentoring the next generation of developers.
             </p>
 
             <div>

@@ -61,7 +61,7 @@ export function Hero() {
               className="mb-5"
             >
               <span className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gradient-hero">
-                Digital Product Designer &amp; Engineer
+                Full-Stack Software Engineer &amp; SaaS Developer
               </span>
             </motion.div>
 
@@ -72,7 +72,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mb-8 max-w-xl text-sm sm:text-base leading-relaxed text-[#64748B]"
             >
-              I craft meaningful digital experiences that are intuitive, beautiful, and built with purpose — turning complex engineering architectures into seamless, high-impact products.
+              I build scalable web, SaaS, and business applications while training the next generation of developers from programming fundamentals to production-ready software delivery.
             </motion.p>
 
             {/* Action Buttons */}

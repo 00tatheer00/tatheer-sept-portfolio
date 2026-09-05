@@ -82,7 +82,7 @@ export function ContactSection() {
               <div className="space-y-4">
                 {/* Email */}
                 <a
-                  href="mailto:contact@tatheer.me"
+                  href="mailto:tatheerabidi00@gmail.com"
                   className="flex items-center gap-3 text-xs sm:text-sm text-[#334155] hover:text-[#6366F1] transition-colors"
                 >
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/80 border border-white text-[#6366F1] shadow-xs">
@@ -90,12 +90,12 @@ export function ContactSection() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <span className="font-medium">contact@tatheer.me</span>
+                  <span className="font-medium">tatheerabidi00@gmail.com</span>
                 </a>
 
                 {/* Phone */}
                 <a
-                  href="tel:+923130920038"
+                  href="tel:+923275792600"
                   className="flex items-center gap-3 text-xs sm:text-sm text-[#334155] hover:text-[#6366F1] transition-colors"
                 >
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/80 border border-white text-[#6366F1] shadow-xs">
@@ -103,7 +103,7 @@ export function ContactSection() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </div>
-                  <span className="font-medium">+92 313 0920038</span>
+                  <span className="font-medium">+92 327 5792600</span>
                 </a>
 
                 {/* Location */}
@@ -114,7 +114,7 @@ export function ContactSection() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
-                  <span className="font-medium">Peshawar, Pakistan · Remote Worldwide</span>
+                  <span className="font-medium">Peshawar, Khyber Pakhtunkhwa, Pakistan</span>
                 </div>
               </div>
             </div>

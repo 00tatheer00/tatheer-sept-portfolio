@@ -81,7 +81,7 @@ export function Footer() {
 
             {/* Email */}
             <a
-              href="mailto:contact@tatheer.me"
+              href="mailto:tatheerabidi00@gmail.com"
               aria-label="Email Tatheer"
               className="flex h-8 w-8 items-center justify-center rounded-full bg-white/80 border border-white text-[#475569] shadow-xs hover:text-[#6366F1] hover:scale-110 transition-all"
             >
