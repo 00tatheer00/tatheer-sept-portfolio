@@ -74,8 +74,9 @@ export function FinalCTA() {
                 size="lg"
                 href="/contact"
                 data-cursor="button"
+                className="font-mono text-xs uppercase tracking-widest font-semibold"
               >
-                Start a Project
+                Let&apos;s Build Something
               </Button>
             </MagneticButton>
             <MagneticButton>
@@ -84,8 +85,9 @@ export function FinalCTA() {
                 size="lg"
                 href="/projects"
                 data-cursor="button"
+                className="font-mono text-xs uppercase tracking-widest"
               >
-                Explore Systems
+                Explore My Work
               </Button>
             </MagneticButton>
           </div>

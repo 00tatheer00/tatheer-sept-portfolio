@@ -8,16 +8,16 @@ import { Journey } from "@/components/sections/Journey";
 import { Impact } from "@/components/sections/Impact";
 import { WhatIBuild } from "@/components/sections/WhatIBuild";
 import { EESTStory } from "@/components/sections/EESTStory";
-import { Tech4Edges } from "@/components/sections/Tech4Edges";
 import { FeaturedWork } from "@/components/sections/FeaturedWork";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
 
 /**
  * Homepage — cinematic interactive portfolio experience.
- * 14 sections forming a continuous visual narrative:
- * WHO IS HE → WHAT DOES HE DO → WHY IS HE DIFFERENT →
- * WHAT HAS HE BUILT → WHY SHOULD I WORK WITH HIM → LET'S TALK
+ * Streamlined visual narrative:
+ * WHO IS HE → HOW HE THINKS → HOW HE TEACHES → HOW HE BUILDS VENTURES →
+ * CAREER TRAJECTORY → VERIFIED IMPACT → TECHNICAL STACK → FLAGSHIP PLATFORM →
+ * SELECTED WORK → LET'S BUILD
  */
 export default function HomePage() {
   return (
@@ -32,38 +32,35 @@ export default function HomePage() {
         {/* 03 — Identity statement */}
         <Identity />
 
-        {/* 04 — Engineer chapter */}
+        {/* 04 — Engineer chapter (6-stage pipeline) */}
         <Engineer />
 
-        {/* 05 — Educator chapter */}
+        {/* 05 — Educator chapter (pedagogy & ecosystem) */}
         <Educator />
 
-        {/* 06 — Entrepreneur chapter */}
+        {/* 06 — Entrepreneur chapter (Tech4Edges & EEST) */}
         <Entrepreneur />
 
-        {/* 07 — Career journey */}
+        {/* 07 — Career journey (student to founder) */}
         <Journey />
 
         {/* 08 — Impact numbers */}
         <Impact />
 
-        {/* 09 — Capabilities showcase */}
+        {/* 09 — Technical domains & stack layers */}
         <WhatIBuild />
 
-        {/* 10 — EEST featured story */}
+        {/* 10 — Flagship software case study: EEST LMS */}
         <EESTStory />
 
-        {/* 11 — Tech4Edges venture */}
-        <Tech4Edges />
-
-        {/* 12 — Featured projects */}
+        {/* 11 — Featured projects from Project Lab */}
         <FeaturedWork />
 
-        {/* 13 — Final call-to-action */}
+        {/* 12 — Final call-to-action */}
         <FinalCTA />
       </main>
 
-      {/* 14 — Footer */}
+      {/* 13 — Footer */}
       <Footer />
     </>
   );

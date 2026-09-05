@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback, useSyncExternalStore } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
 import type { CursorVariant } from "@/types";
 
-/* ── Touch / hover detection via useSyncExternalStore ─────── */
+/* ── Touch / pointer query subscriptions ─────────────────────── */
 
 function subscribeToMediaQuery(callback: () => void) {
+  if (typeof window === "undefined") return () => {};
   const hoverQuery = window.matchMedia("(hover: hover)");
   const pointerQuery = window.matchMedia("(pointer: fine)");
   const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -32,17 +32,18 @@ function getIsTouchDevice() {
 }
 
 function getServerSnapshot() {
-  return true; // Assume touch on server
+  return true; // Default to non-rendering on SSR
 }
 
 /**
- * Custom cursor for desktop devices.
- * Renders a dot + ring that follows the mouse and reacts to interactive elements.
+ * Premium, zero-latency cursor enhancement.
  *
- * - Desktop only (hidden on touch)
- * - Does not block clicks (pointer-events: none)
- * - Reacts to data-cursor attributes on elements
- * - Respects reduced motion
+ * Key Architecture:
+ * 1. Preserves the native OS cursor at all times (never sets cursor: none).
+ * 2. Positions via direct requestAnimationFrame & transform3d (bypasses React render loop).
+ * 3. 100% pointer-events: none — never blocks clicks or text selection.
+ * 4. Subtly reacts to interactive elements (links, buttons, project panels).
+ * 5. Completely disabled on mobile, tablet, and touch screens.
  */
 export function CustomCursor() {
   const isTouch = useSyncExternalStore(
@@ -51,25 +52,20 @@ export function CustomCursor() {
     getServerSnapshot
   );
 
+  const ringRef = useRef<HTMLDivElement>(null);
   const [variant, setVariant] = useState<CursorVariant>("default");
   const [isVisible, setIsVisible] = useState(false);
-  const cursorRef = useRef<HTMLDivElement>(null);
 
-  const mouseX = useMotionValue(-100);
-  const mouseY = useMotionValue(-100);
+  // Direct mouse coordinates for high-fps RAF interpolation
+  const pos = useRef({ x: -100, y: -100 });
+  const ringPos = useRef({ x: -100, y: -100 });
+  const rafId = useRef<number | null>(null);
 
-  /* Smoother spring for the outer ring */
-  const ringX = useSpring(mouseX, { stiffness: 250, damping: 25 });
-  const ringY = useSpring(mouseY, { stiffness: 250, damping: 25 });
-
-  const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
-    },
-    [mouseX, mouseY, isVisible]
-  );
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    pos.current.x = e.clientX;
+    pos.current.y = e.clientY;
+    setIsVisible(true);
+  }, []);
 
   const handleMouseLeave = useCallback(() => {
     setIsVisible(false);
@@ -79,115 +75,102 @@ export function CustomCursor() {
     setIsVisible(true);
   }, []);
 
-  /* Detect interactive elements via data-cursor attribute or tag */
+  // Detect interactive element variants without heavy selectors
   const handleElementDetection = useCallback((e: MouseEvent) => {
-    const target = e.target as HTMLElement;
-    const closestInteractive = target.closest(
+    const target = e.target as HTMLElement | null;
+    if (!target) return;
+
+    const interactive = target.closest(
       "[data-cursor], a, button, [role='button'], input, textarea, select"
     );
 
-    if (!closestInteractive) {
-      setVariant("default");
+    if (!interactive) {
+      setVariant((prev) => (prev === "default" ? prev : "default"));
       return;
     }
 
-    /* Check explicit data-cursor attribute first */
-    const cursorAttr = closestInteractive.getAttribute(
-      "data-cursor"
-    ) as CursorVariant | null;
-
+    const cursorAttr = interactive.getAttribute("data-cursor") as CursorVariant | null;
     if (cursorAttr) {
-      setVariant(cursorAttr);
+      setVariant((prev) => (prev === cursorAttr ? prev : cursorAttr));
       return;
     }
 
-    /* Fall back to tag-based detection */
-    const tag = closestInteractive.tagName.toLowerCase();
-    if (tag === "a") setVariant("link");
-    else if (tag === "button" || closestInteractive.getAttribute("role") === "button")
-      setVariant("button");
-    else setVariant("default");
+    const tag = interactive.tagName.toLowerCase();
+    if (tag === "a") {
+      setVariant((prev) => (prev === "link" ? prev : "link"));
+    } else if (tag === "button" || interactive.getAttribute("role") === "button") {
+      setVariant((prev) => (prev === "button" ? prev : "button"));
+    } else {
+      setVariant((prev) => (prev === "default" ? prev : "default"));
+    }
   }, []);
 
+  // Ultra-smooth RAF tick for follower ring
   useEffect(() => {
     if (isTouch) return;
 
-    document.addEventListener("mousemove", handleMouseMove);
+    const tick = () => {
+      // Smooth linear interpolation (lerp) with high responsiveness
+      const lerp = 0.28;
+      ringPos.current.x += (pos.current.x - ringPos.current.x) * lerp;
+      ringPos.current.y += (pos.current.y - ringPos.current.y) * lerp;
+
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0)`;
+      }
+
+      rafId.current = requestAnimationFrame(tick);
+    };
+
+    rafId.current = requestAnimationFrame(tick);
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave);
     document.addEventListener("mouseenter", handleMouseEnter);
-    document.addEventListener("mouseover", handleElementDetection);
-
-    /* Add class to body to hide default cursor */
-    document.body.classList.add("custom-cursor-active");
+    document.addEventListener("mouseover", handleElementDetection, { passive: true });
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      window.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
       document.removeEventListener("mouseover", handleElementDetection);
-      document.body.classList.remove("custom-cursor-active");
     };
-  }, [
-    isTouch,
-    handleMouseMove,
-    handleMouseLeave,
-    handleMouseEnter,
-    handleElementDetection,
-  ]);
+  }, [isTouch, handleMouseMove, handleMouseLeave, handleMouseEnter, handleElementDetection]);
 
-  /* Don't render on touch devices */
   if (isTouch) return null;
 
   const isInteractive = variant !== "default";
+  const isProject = variant === "project" || variant === "view";
 
   return (
     <div
-      ref={cursorRef}
+      ref={ringRef}
       className={cn(
-        "pointer-events-none fixed inset-0 z-[var(--z-cursor)]",
-        !isVisible && "opacity-0"
+        "pointer-events-none fixed top-0 left-0 z-[var(--z-cursor)] will-change-transform",
+        "transition-opacity duration-300",
+        isVisible ? "opacity-100" : "opacity-0"
       )}
+      style={{ transform: "translate3d(-100px, -100px, 0)" }}
       aria-hidden="true"
     >
-      {/* Dot — precise position */}
-      <motion.div
-        style={{ x: mouseX, y: mouseY }}
+      {/* Precision ambient ring around the real hardware cursor */}
+      <div
         className={cn(
-          "absolute -top-1 -left-1 h-2 w-2 rounded-full",
-          "bg-[var(--color-accent)]",
-          "transition-transform duration-150",
-          isInteractive && "scale-0"
-        )}
-      />
-
-      {/* Ring — springs behind with lag */}
-      <motion.div
-        style={{ x: ringX, y: ringY }}
-        className={cn(
-          "absolute -top-5 -left-5 h-10 w-10 rounded-full",
-          "border border-[var(--color-accent)]/40",
-          "transition-all duration-200",
-          isInteractive && "scale-150 border-[var(--color-accent)]/60 bg-[var(--color-accent)]/5",
-          variant === "project" && "scale-[2] border-[var(--color-accent)]/30",
-          variant === "view" && "scale-[2] border-[var(--color-accent)]/30",
-          variant === "drag" && "scale-75"
+          "relative -top-3 -left-3 flex items-center justify-center rounded-full",
+          "border border-[var(--color-accent)]/35 bg-[var(--color-accent)]/[0.03]",
+          "transition-[width,height,transform,background-color,border-color] duration-200 ease-out",
+          !isInteractive && "h-6 w-6",
+          isInteractive && !isProject && "h-9 w-9 -top-4.5 -left-4.5 scale-110 border-[var(--color-accent)]/60 bg-[var(--color-accent)]/10",
+          isProject && "h-12 w-12 -top-6 -left-6 border-[var(--color-accent)] bg-[var(--color-accent)]/15 backdrop-blur-[1px]"
         )}
       >
-        {/* Label inside ring for special states */}
-        {(variant === "view" || variant === "project" || variant === "drag") && (
-          <span
-            className={cn(
-              "absolute inset-0 flex items-center justify-center",
-              "text-[8px] font-medium uppercase tracking-wider",
-              "text-[var(--color-accent)]"
-            )}
-          >
-            {variant === "view" && "View"}
-            {variant === "project" && "Open"}
-            {variant === "drag" && "Drag"}
+        {isProject && (
+          <span className="font-mono text-[8px] uppercase tracking-widest text-[var(--color-accent)] font-semibold">
+            VIEW
           </span>
         )}
-      </motion.div>
+      </div>
     </div>
   );
 }

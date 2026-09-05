@@ -4,14 +4,22 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { AnimatedText } from "@/components/animation/AnimatedText";
 import { Reveal } from "@/components/animation/Reveal";
 import { HeroGrid } from "./HeroGrid";
 
+const systemPipeline = [
+  { step: "01", name: "IDEA", desc: "Domain & Problem Scoping" },
+  { step: "02", name: "ARCHITECTURE", desc: "Contracts & Data Models" },
+  { step: "03", name: "CODE", desc: "Type-Safe Implementation" },
+  { step: "04", name: "SYSTEM", desc: "Infrastructure & Resilience" },
+  { step: "05", name: "PRODUCT", desc: "Production & User Impact" },
+];
+
 /**
- * 02 — Hero section.
- * Full-screen immersive experience with dynamic typographic composition
- * and interactive technical grid background.
+ * 02 — Hero Section (Rebuilt).
+ * Authoritative, cinematic personal digital identity for S Tatheer Hussain.
+ * Communicates: S TATHEER HUSSAIN · Full-Stack Software Engineer · SaaS Developer · Technical Educator
+ * Integrates: IDEA → ARCHITECTURE → CODE → SYSTEM → PRODUCT
  */
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -19,107 +27,119 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-dvh items-center overflow-hidden"
+      className="relative flex min-h-dvh items-center justify-center overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-28"
     >
-      {/* Interactive grid background */}
+      {/* Subtle technical background grid */}
       <HeroGrid />
 
-      <Container className="relative z-10">
-        <div className="py-20 sm:py-0">
-          {/* Signature Digital Motif & System Coordinate Tag */}
-          <Reveal delay={shouldReduceMotion ? 0 : 0.4}>
+      <Container className="relative z-10 w-full">
+        <div className="mx-auto max-w-5xl">
+          {/* Status & Coordinate Tag */}
+          <Reveal delay={shouldReduceMotion ? 0 : 0.1}>
             <div className="mb-6 flex flex-wrap items-center gap-3">
-              <span className="flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/80 px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.25em] text-[var(--color-accent)] backdrop-blur-sm">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/80 px-3.5 py-1 font-mono text-[0.68rem] uppercase tracking-[0.25em] text-[var(--color-accent)] backdrop-blur-md">
                 <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)] animate-pulse" />
-                TH // 34.0151° N, 71.5249° E
+                SYSTEM // 34.0151° N, 71.5249° E
               </span>
-              <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[var(--color-foreground-subtle)] sm:inline">
-                Peshawar · System Architecture
+              <span className="font-mono text-[0.68rem] uppercase tracking-[0.2em] text-[var(--color-foreground-subtle)]">
+                Peshawar · Full-Stack &amp; Systems Architecture
               </span>
             </div>
           </Reveal>
 
-          {/* Main typographic composition */}
-          <div className="mb-6">
-            <AnimatedText
-              text="FULL-STACK"
-              as="h1"
-              splitBy="char"
-              delay={shouldReduceMotion ? 0 : 0.6}
-              className="text-[clamp(2.8rem,8.5vw,7.2rem)] font-bold leading-[0.92] tracking-[-0.035em]"
-            />
-            <AnimatedText
-              text="SOFTWARE"
-              as="h1"
-              splitBy="char"
-              delay={shouldReduceMotion ? 0 : 0.8}
-              className="text-[clamp(2.8rem,8.5vw,7.2rem)] font-bold leading-[0.92] tracking-[-0.035em]"
-            />
-            <AnimatedText
-              text="ENGINEER"
-              as="h1"
-              splitBy="char"
-              delay={shouldReduceMotion ? 0 : 1.0}
-              className="text-[clamp(2.8rem,8.5vw,7.2rem)] font-bold leading-[0.92] tracking-[-0.035em] text-[var(--color-accent)]"
-            />
-          </div>
+          {/* Primary Identity: Name */}
+          <Reveal delay={shouldReduceMotion ? 0 : 0.2}>
+            <h1 className="mb-4 text-[clamp(2.75rem,7.5vw,6.5rem)] font-bold uppercase leading-[0.94] tracking-[-0.035em] text-[var(--color-foreground)]">
+              S Tatheer <br className="hidden sm:inline" />
+              <span className="text-[var(--color-accent)]">Hussain</span>
+            </h1>
+          </Reveal>
 
-          {/* Engineering Visual System Motif: Input -> Process -> Output */}
-          <Reveal delay={shouldReduceMotion ? 0 : 1.3}>
-            <div className="mb-6 inline-flex flex-wrap items-center gap-2 rounded-lg border border-[var(--color-border)]/60 bg-[var(--color-surface)]/40 px-3 py-1.5 font-mono text-[0.6rem] tracking-wider text-[var(--color-foreground-muted)] backdrop-blur-sm">
-              <span className="text-[var(--color-foreground)]">INPUT:</span>
-              <span>COMPLEX REQUIREMENTS</span>
-              <span className="text-[var(--color-accent)] font-bold">➔</span>
-              <span className="text-[var(--color-foreground)]">ARCHITECTURE:</span>
-              <span>MODULAR SYSTEMS</span>
-              <span className="text-[var(--color-accent)] font-bold">➔</span>
-              <span className="text-[var(--color-accent)] font-semibold">OUTPUT: PRODUCTION EXCELLENCE</span>
+          {/* Three Core Roles — Clear Typographic Hierarchy */}
+          <Reveal delay={shouldReduceMotion ? 0 : 0.35}>
+            <div className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-[var(--color-foreground-muted)]">
+              <span className="text-[var(--color-foreground)] font-semibold">
+                Full-Stack Software Engineer
+              </span>
+              <span className="text-[var(--color-accent)]/60">/</span>
+              <span className="text-[var(--color-foreground)] font-semibold">
+                SaaS Developer
+              </span>
+              <span className="text-[var(--color-accent)]/60">/</span>
+              <span className="text-[var(--color-foreground)] font-semibold">
+                Technical Educator
+              </span>
             </div>
           </Reveal>
 
-          {/* Secondary roles — horizontal dynamic layout */}
-          <Reveal delay={shouldReduceMotion ? 0 : 1.5}>
-            <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[var(--color-foreground-muted)] sm:text-xs">
-              <span className="text-[var(--color-foreground)] font-medium">SaaS Developer</span>
-              <span className="hidden text-[var(--color-accent)]/50 sm:inline">
-                ◆
-              </span>
-              <span className="text-[var(--color-foreground)] font-medium">Technical Educator</span>
-              <span className="hidden text-[var(--color-accent)]/50 sm:inline">
-                ◆
-              </span>
-              <span className="text-[var(--color-foreground)] font-medium">Founder &amp; CEO</span>
+          {/* Core Visual Concept: IDEA → ARCHITECTURE → CODE → SYSTEM → PRODUCT */}
+          <Reveal delay={shouldReduceMotion ? 0 : 0.5}>
+            <div className="mb-10 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/60 p-4 backdrop-blur-md sm:p-5">
+              <div className="mb-3 flex items-center justify-between border-b border-[var(--color-border)]/60 pb-2">
+                <span className="font-mono text-[0.62rem] uppercase tracking-[0.25em] text-[var(--color-foreground-subtle)]">
+                  Engineering Lifecycle &amp; Mental Model
+                </span>
+                <span className="font-mono text-[0.6rem] uppercase tracking-wider text-[var(--color-accent)]">
+                  5-Stage Continuous Delivery
+                </span>
+              </div>
+
+              {/* Responsive Flow Stepper */}
+              <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-5 sm:gap-2">
+                {systemPipeline.map((item, idx) => (
+                  <div
+                    key={item.name}
+                    className="group relative rounded-lg border border-[var(--color-border)]/50 bg-[var(--color-background)]/50 p-2.5 transition-colors duration-300 hover:border-[var(--color-accent)]/50 hover:bg-[var(--color-surface)]"
+                  >
+                    <div className="flex items-center justify-between font-mono text-[0.6rem] text-[var(--color-foreground-subtle)] mb-1">
+                      <span>{item.step}</span>
+                      {idx < systemPipeline.length - 1 && (
+                        <span className="hidden sm:inline text-[var(--color-accent)]/60">→</span>
+                      )}
+                    </div>
+                    <div className="font-mono text-[0.72rem] font-bold tracking-wider text-[var(--color-foreground)] group-hover:text-[var(--color-accent)] transition-colors">
+                      {item.name}
+                    </div>
+                    <div className="text-[0.6rem] leading-tight text-[var(--color-foreground-subtle)] mt-0.5 hidden sm:block">
+                      {item.desc}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
 
-          {/* Supporting statement */}
-          <Reveal delay={shouldReduceMotion ? 0 : 1.7}>
-            <p className="mb-10 max-w-xl text-base leading-relaxed text-[var(--color-foreground-secondary)] sm:text-lg">
-              I architect and ship robust web applications, high-throughput backend services, and multi-tenant SaaS platforms — while training the next generation of engineers through university lectures and developer masterclasses.
+          {/* Supporting Statement */}
+          <Reveal delay={shouldReduceMotion ? 0 : 0.65}>
+            <p className="mb-10 max-w-2xl text-base leading-relaxed text-[var(--color-foreground-secondary)] sm:text-lg">
+              I architect, engineer, and ship resilient multi-tenant SaaS products, cloud backends, and full-stack web platforms — while training over 500+ future software engineers through university lectures and professional masterclasses.
             </p>
           </Reveal>
 
-          {/* CTAs */}
-          <Reveal delay={shouldReduceMotion ? 0 : 1.9}>
-            <div className="flex flex-wrap gap-4">
+          {/* Action CTAs */}
+          <Reveal delay={shouldReduceMotion ? 0 : 0.8}>
+            <div className="flex flex-wrap items-center gap-4">
               <MagneticButton>
                 <Button
                   variant="primary"
                   size="lg"
-                  href="#featured-work"
+                  href="/contact"
                   data-cursor="button"
+                  className="font-mono text-xs uppercase tracking-widest font-semibold"
                 >
-                  Explore Systems
+                  Let&apos;s Build Something
                 </Button>
               </MagneticButton>
+
               <MagneticButton>
                 <Button
                   variant="secondary"
                   size="lg"
-                  href="/contact"
+                  href="/projects"
                   data-cursor="button"
+                  className="font-mono text-xs uppercase tracking-widest"
                 >
-                  Let&apos;s Build
+                  Explore My Work
                 </Button>
               </MagneticButton>
             </div>
@@ -127,24 +147,21 @@ export function Hero() {
         </div>
       </Container>
 
-      {/* Scroll indicator */}
+      {/* Subtle bottom scroll prompt */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: shouldReduceMotion ? 0 : 3, duration: 1 }}
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3"
+        transition={{ delay: shouldReduceMotion ? 0 : 1.2, duration: 0.8 }}
+        className="pointer-events-none absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2"
+        aria-hidden="true"
       >
-        <span className="font-mono text-[0.6rem] uppercase tracking-[0.25em] text-[var(--color-foreground-subtle)]">
-          Scroll to explore
+        <span className="font-mono text-[0.58rem] uppercase tracking-[0.3em] text-[var(--color-foreground-subtle)]">
+          Scroll To Inspect
         </span>
         <motion.div
-          animate={shouldReduceMotion ? {} : { y: [0, 6, 0] }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="h-8 w-px bg-gradient-to-b from-[var(--color-foreground-subtle)] to-transparent"
+          animate={shouldReduceMotion ? {} : { y: [0, 4, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="h-6 w-px bg-gradient-to-b from-[var(--color-accent)]/50 to-transparent"
         />
       </motion.div>
     </section>

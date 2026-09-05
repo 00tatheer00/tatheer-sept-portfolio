@@ -233,17 +233,9 @@ a {
   -webkit-mask-image: linear-gradient(to top, black 60%, transparent 100%);
 }
 
-/* ── Utility: Hide cursor on touch devices ───────────────────── */
-
-.custom-cursor-active {
-  cursor: none;
-}
-
-.custom-cursor-active a,
-.custom-cursor-active button,
-.custom-cursor-active [role="button"] {
-  cursor: none;
-}
+/* ── Utility: Custom Cursor Enhancement ─────────────────────── */
+/* Native OS pointer is preserved for 100% latency-free responsiveness.
+   Custom follower operates purely as an ambient accent via pointer-events: none. */
 
 /* ── Utility: Text balance ───────────────────────────────────── */
 
