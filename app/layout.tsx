@@ -14,7 +14,7 @@ import "./globals.css";
 export const metadata: Metadata = baseMetadata;
 
 export const viewport: Viewport = {
-  themeColor: "#07090E",
+  themeColor: "#F8F9FD",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -39,17 +39,17 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="bg-background text-foreground antialiased">
+      <body className="bg-[#F8F9FD] text-[#0F172A] antialiased selection:bg-indigo-100 selection:text-indigo-900">
         {/* Accessible skip link for keyboard & screen reader navigation */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-[var(--color-accent)] focus:px-4 focus:py-2 focus:text-xs focus:font-mono focus:font-bold focus:text-[var(--color-background)] focus:outline-none focus:ring-2 focus:ring-white shadow-lg"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-[var(--color-accent)] focus:px-4 focus:py-2 focus:text-xs focus:font-mono focus:font-bold focus:text-white shadow-lg"
         >
           Skip to content
         </a>
 
-        {/* Noise texture overlay */}
-        <div className="bg-noise" />
+        {/* Master Liquid Glass Background — Translucent ribbons and caustics */}
+        <div className="liquid-glass-background" aria-hidden="true" />
 
         {/* Global Navigation Header */}
         <Navbar />

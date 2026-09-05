@@ -1,62 +1,56 @@
 import { Hero } from "@/components/sections/Hero";
-import { Identity } from "@/components/sections/Identity";
-import { Engineer } from "@/components/sections/Engineer";
+import { AboutMe } from "@/components/sections/AboutMe";
+import { Services } from "@/components/sections/Services";
+import { Technologies } from "@/components/sections/Technologies";
 import { FeaturedWork } from "@/components/sections/FeaturedWork";
-import { Journey } from "@/components/sections/Journey";
-import { WhatIBuild } from "@/components/sections/WhatIBuild";
-import { Entrepreneur } from "@/components/sections/Entrepreneur";
+import { Process } from "@/components/sections/Process";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { FinalCTA } from "@/components/sections/FinalCTA";
+import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/sections/Footer";
 
 /**
- * Homepage — Master Redesign.
- * Strictly Faithful to Visual Source of Truth (Reference Image):
- *
- * 01. Hero (S Tatheer Hussain, portrait with glowing aura, role triad, CTAs)
- * 02. Identity (I BUILD. I TEACH. I LEAD. + Software, People, Opportunities)
- * 03. Engineer (HOW I THINK AS AN ENGINEER + 6-stage process line)
- * 04. Featured Work (Real Projects. Real Impact. + 3 project cards)
- * 05. The Journey (Student to Founder + 5 milestone nodes)
- * 06. Technical Expertise (Turned Into Real Solutions + 6 domain cards)
- * 07. Organizations (Building Beyond Code + Tech4Edges & EEST + script quote)
- * 08. Kind Words (What People Say + testimonial carousel)
- * 09. Final CTA (HAVE A PROBLEM WORTH SOLVING? + aurora landscape)
- * 10. Footer (STH logo, navigation, socials, signature tagline)
+ * Homepage — 1000% Matched to Reference Image Design.
+ * Architecture:
+ * 01. Hero (Greeting, Name, Gradient Subtitle, Buttons, Trusted By logos, 3D Curved Glass Frame with Portrait & Floating Cards)
+ * 02. About Me (Designing with Empathy / Building with Purpose, 3-Stat Frosted Capsule, Narrative, More About Me CTA)
+ * 03. Services I Offer (4 Frosted Glass Cards with colored icons + Floating 3D Liquid Glass Sphere)
+ * 04. Technologies I Use (Frosted Glass Horizontal Tile Strip: Figma, Sketch, Adobe XD, Photoshop, Illustrator, Webflow, Framer, Notion, React, Next.js)
+ * 05. Selected Work (Featured Projects, 3 Frosted Glass Cards with High-Res UI Previews)
+ * 06. Design Process I Follow (5 Connected Numbered Cards with Arrows: 01 Discover → 02 Define → 03 Ideate → 04 Design & Build → 05 Test & Iterate)
+ * 07. What Clients Say (3 Frosted Glass Quote Cards with Avatars & Circular Carousel Controls)
+ * 08. Let's Connect (Contact Section with Frosted Glass Form + Floating 3D Liquid Ribbon Knot)
+ * 09. Footer (Frosted Glass Brand & Navigation Bar)
  */
 export default function HomePage() {
   return (
     <>
-      <main id="main-content">
+      <main id="main-content" className="relative z-10 flex flex-col">
         {/* 01 — Hero */}
         <Hero />
 
-        {/* 02 — I BUILD. I TEACH. I LEAD. */}
-        <Identity />
+        {/* 02 — About Me */}
+        <AboutMe />
 
-        {/* 03 — How I Think As An Engineer */}
-        <Engineer />
+        {/* 03 — Services I Offer */}
+        <Services />
 
-        {/* 04 — Featured Work */}
+        {/* 04 — Technologies I Use */}
+        <Technologies />
+
+        {/* 05 — Selected Work */}
         <FeaturedWork />
 
-        {/* 05 — The Journey */}
-        <Journey />
+        {/* 06 — Design Process I Follow */}
+        <Process />
 
-        {/* 06 — Technical Expertise */}
-        <WhatIBuild />
-
-        {/* 07 — Organizations Creating Impact */}
-        <Entrepreneur />
-
-        {/* 08 — Kind Words */}
+        {/* 07 — What Clients Say */}
         <Testimonials />
 
-        {/* 09 — Final CTA */}
-        <FinalCTA />
+        {/* 08 — Let's Connect */}
+        <ContactSection />
       </main>
 
-      {/* 10 — Footer */}
+      {/* 09 — Footer */}
       <Footer />
     </>
   );

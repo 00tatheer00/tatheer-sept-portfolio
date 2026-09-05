@@ -4,140 +4,110 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/animation/Reveal";
-import { staggerContainer, fadeInUp } from "@/lib/animations";
 
-const featuredProjects = [
+const selectedWorks = [
   {
     image: "/project-eest-hd.png",
-    badge: "EDUCATION / LMS",
-    badgeColor: "bg-[#8B5CF6]/15 text-[#A78BFA] border-[#8B5CF6]/30",
-    title: "EEST Portal / LMS",
-    description: "A complete learning management system supporting students, trainers and educational workflows.",
+    category: "Mobile & Web App Design",
+    title: "Finova — Finance App & Portal",
     href: "/projects/eest-portal",
   },
   {
     image: "/project-erp-hd.png",
-    badge: "BUSINESS / ERP",
-    badgeColor: "bg-[#00D2FF]/15 text-[#38BDF8] border-[#00D2FF]/30",
-    title: "Custom ERP Platform",
-    description: "A tailored ERP/operations platform for a logistics client in Lahore, improving business workflows and efficiency.",
+    category: "Web Application",
+    title: "Analytics Operations Dashboard",
     href: "/projects/erp-operations-platform",
   },
   {
     image: "/project-saas-hd.png",
-    badge: "SAAS",
-    badgeColor: "bg-[#3B82F6]/15 text-[#60A5FA] border-[#3B82F6]/30",
-    title: "Startup Dashboard Revamp",
-    description: "Dashboard modernization and API improvements for an Islamabad-based startup.",
+    category: "Web Design & Architecture",
+    title: "SaaS Enterprise Landing Page",
     href: "/projects/dashboard-api-revamp",
   },
 ];
 
 /**
- * 05 — Featured Work Section.
- * Strictly Faithful to Reference Design.
+ * Featured Work / Selected Work — 1000% Matched to Reference Design Image.
  * Features:
- * - Header: FEATURED WORK / Real Projects. Real Impact. + "View All Projects ➔"
- * - 3 Project Cards with large mockups, category badges, titles, descriptions, and "View Case Study ➔"
+ * - FEATURED PROJECTS badge
+ * - "Selected Work" heading + "View All Projects ↗" button
+ * - 3 Frosted glass cards with UI preview mockups, titles, categories, and bottom-right circular arrow button
  */
 export function FeaturedWork() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section
-      id="featured-work"
-      className="relative overflow-hidden py-24 sm:py-32 bg-[#06080F] border-t border-[#1E293B]/60"
-    >
+    <section id="work" className="relative py-16 sm:py-20 lg:py-24">
       <Container>
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14">
+        {/* Header Row */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
-            <Reveal>
-              <span className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-[#00D2FF] font-semibold block mb-2">
-                Featured Work
+            <div className="mb-2">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#6366F1]">
+                FEATURED PROJECTS
               </span>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
-                Real Projects. Real Impact.
-              </h2>
-            </Reveal>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0F172A]">
+              Selected Work
+            </h2>
           </div>
 
-          <Reveal delay={0.2}>
+          <div>
             <Link
               href="/projects"
-              data-cursor="button"
-              className="inline-flex items-center gap-2 rounded-full border border-[#1E293B] bg-[#0E1322] px-6 py-2.5 text-xs font-semibold text-white transition-all duration-300 hover:border-[#00D2FF]/50 hover:bg-[#151C30]"
+              className="btn-glass-pill inline-flex items-center gap-1.5 px-5 py-2 text-xs sm:text-sm font-semibold text-[#0F172A] shadow-sm"
             >
               <span>View All Projects</span>
-              <span className="text-sm font-bold">➔</span>
+              <span className="text-xs font-bold text-[#6366F1]">↗</span>
             </Link>
-          </Reveal>
+          </div>
         </div>
 
-        {/* 3 Featured Project Cards Grid */}
-        <motion.div
-          variants={shouldReduceMotion ? undefined : staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {featuredProjects.map((project) => (
+        {/* 3 Project Cards Grid */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {selectedWorks.map((work, index) => (
             <motion.div
-              key={project.title}
-              variants={shouldReduceMotion ? undefined : fadeInUp}
-              className="group relative rounded-2xl border border-[#1E293B] bg-[#0D1220] overflow-hidden transition-all duration-300 hover:border-[#334155] hover:bg-[#12182B] flex flex-col justify-between"
+              key={work.title}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.12 }}
+              className="glass-card group rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between overflow-hidden cursor-pointer"
             >
               {/* Preview Image Container */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0A0E1A] border-b border-[#1E293B]">
+              <Link href={work.href} className="block relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-slate-100 mb-4">
                 <Image
-                  src={project.image}
-                  alt={project.title}
+                  src={work.image}
+                  alt={work.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-              </div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </Link>
 
-              {/* Card Body */}
-              <div className="p-6 flex flex-col flex-1 justify-between">
+              {/* Card Meta & Bottom Arrow */}
+              <div className="flex items-center justify-between gap-3 px-1">
                 <div>
-                  {/* Badge */}
-                  <div className="mb-3">
-                    <span className={`inline-block font-mono text-[0.6rem] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${project.badgeColor}`}>
-                      {project.badge}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-xl font-bold tracking-tight text-white mb-2 group-hover:text-[#00D2FF] transition-colors">
-                    {project.title}
+                  <h3 className="text-sm sm:text-base font-bold text-[#0F172A] tracking-tight group-hover:text-[#6366F1] transition-colors">
+                    <Link href={work.href}>{work.title}</Link>
                   </h3>
-
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed mb-6">
-                    {project.description}
-                  </p>
+                  <span className="text-[11px] sm:text-xs text-[#64748B] font-medium">
+                    {work.category}
+                  </span>
                 </div>
 
-                {/* Link */}
-                <div className="pt-2">
-                  <Link
-                    href={project.href}
-                    data-cursor="project"
-                    className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-[#00D2FF] transition-colors group-hover:text-white"
-                  >
-                    <span>View Case Study</span>
-                    <span className="transition-transform group-hover:translate-x-1">➔</span>
-                  </Link>
-                </div>
+                <Link
+                  href={work.href}
+                  aria-label={`View ${work.title}`}
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/90 border border-white text-[#0F172A] shadow-sm transition-all duration-200 group-hover:bg-[#0F172A] group-hover:text-white group-hover:scale-110"
+                >
+                  <span className="text-xs font-bold">↗</span>
+                </Link>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </Container>
     </section>
   );

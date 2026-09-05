@@ -14,16 +14,20 @@ interface NavLinkItem {
 
 const navLinks: NavLinkItem[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Experience", href: "/experience" },
-  { label: "Projects", href: "/projects" },
-  { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Work", href: "/#work" },
+  { label: "Process", href: "/#process" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 /**
- * Global Navigation Bar — Faithful to Reference Design.
- * Features STH monogram logo, centered link cluster, and gradient 'Let's Talk' CTA.
+ * Global Capsule Navigation Bar — 1000% Matched to Reference Image.
+ * Features:
+ * - Left: Dark monogram rounded tile (TH) + "S Tatheer Hussain" + "Digital Product Engineer"
+ * - Center: Frosted pill cluster with active white pill tab
+ * - Right: Frosted glass pill button "Let's Talk ↗"
  */
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +36,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 15);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -48,7 +52,6 @@ export function Navbar() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
-  // Close mobile drawer on route change
   const [prevPathname, setPrevPathname] = useState(pathname);
   if (prevPathname !== pathname) {
     setPrevPathname(pathname);
@@ -60,56 +63,54 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-[#06080F]/90 backdrop-blur-md border-b border-[#1E293B]/80 py-3 shadow-lg shadow-black/40"
-          : "bg-transparent py-5"
+          ? "bg-white/75 backdrop-blur-xl border-b border-white/60 py-2.5 shadow-[0_4px_24px_rgba(15,23,42,0.05)]"
+          : "bg-transparent py-4 sm:py-5"
       )}
     >
       <Container className="flex items-center justify-between">
-        {/* Brand / Logo (Reference: STH + S TATHEER HUSSAIN + Subtext) */}
+        {/* Brand / Logo (Reference: Square badge with letter + Name + Subtitle) */}
         <Link
           href="/"
-          className="group flex items-center gap-3 transition-opacity hover:opacity-95"
+          className="group flex items-center gap-2.5 transition-opacity hover:opacity-90"
         >
-          <div className="font-heading text-xl sm:text-2xl font-black tracking-tight text-gradient-cyan-blue flex items-center">
-            STH
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#0F172A] text-white font-bold text-sm shadow-sm transition-transform duration-200 group-hover:scale-105">
+            TH
           </div>
-          <div className="hidden sm:flex flex-col">
-            <span className="font-heading text-xs font-bold uppercase tracking-wider text-white">
+          <div className="flex flex-col">
+            <span className="text-xs sm:text-sm font-bold tracking-tight text-[#0F172A]">
               S Tatheer Hussain
             </span>
-            <span className="text-[0.62rem] text-[var(--color-foreground-muted)] tracking-wide">
-              Engineer. Educator. Entrepreneur.
+            <span className="text-[0.65rem] text-[#64748B] font-medium tracking-wide">
+              Digital Product Engineer
             </span>
           </div>
         </Link>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop Navigation Links — Centered Pill Container */}
         <nav
           aria-label="Primary navigation"
-          className="hidden md:flex items-center gap-1 rounded-full border border-[#1E293B] bg-[#0E1322]/80 px-4 py-1.5 backdrop-blur-md"
+          className="hidden md:flex items-center gap-1 rounded-full border border-white/80 bg-white/60 p-1 backdrop-blur-xl shadow-[0_2px_12px_rgba(15,23,42,0.04)]"
         >
           {navLinks.map((item) => {
-            const isActive =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname?.startsWith(item.href);
+            const isHome = item.label === "Home";
+            const isActive = isHome ? pathname === "/" : false;
 
             return (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
                 className={cn(
-                  "relative px-3.5 py-1 text-xs font-medium transition-colors duration-200 rounded-full",
+                  "relative px-3.5 py-1.5 text-xs font-medium transition-colors duration-200 rounded-full",
                   isActive
-                    ? "text-white"
-                    : "text-[#94A3B8] hover:text-white"
+                    ? "text-[#0F172A] font-semibold"
+                    : "text-[#64748B] hover:text-[#0F172A]"
                 )}
               >
                 {isActive && (
                   <motion.span
-                    layoutId="navbar-pill-active"
-                    className="absolute inset-0 rounded-full bg-[#1E293B]/90 border border-[#334155]/60"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    layoutId="navbar-active-pill"
+                    className="absolute inset-0 rounded-full bg-white shadow-[0_2px_8px_rgba(15,23,42,0.08)] border border-white"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
                   />
                 )}
                 <span className="relative z-10">{item.label}</span>
@@ -122,36 +123,36 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             href="/contact"
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-full btn-gradient-violet px-4 py-1.5 text-xs font-semibold text-white tracking-wide"
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-white/85 hover:bg-white text-[#0F172A] border border-white px-4 py-1.5 text-xs font-semibold shadow-[0_2px_10px_rgba(15,23,42,0.05)] transition-all duration-200 hover:scale-105"
           >
             <span>Let&apos;s Talk</span>
-            <span className="text-xs">↗</span>
+            <span className="text-xs font-bold text-[#6366F1]">↗</span>
           </Link>
 
-          {/* Mobile toggle */}
+          {/* Mobile toggle button */}
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open navigation menu"}
             aria-expanded={isOpen}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1E293B] bg-[#0E1322] text-white md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/80 bg-white/70 text-[#0F172A] shadow-sm md:hidden"
           >
             <div className="flex flex-col gap-1.5 w-4">
               <span
                 className={cn(
-                  "h-0.5 w-full bg-current transition-transform duration-200",
+                  "h-0.5 w-full bg-[#0F172A] transition-transform duration-200",
                   isOpen && "rotate-45 translate-y-2"
                 )}
               />
               <span
                 className={cn(
-                  "h-0.5 w-full bg-current transition-opacity duration-200",
+                  "h-0.5 w-full bg-[#0F172A] transition-opacity duration-200",
                   isOpen && "opacity-0"
                 )}
               />
               <span
                 className={cn(
-                  "h-0.5 w-full bg-current transition-transform duration-200",
+                  "h-0.5 w-full bg-[#0F172A] transition-transform duration-200",
                   isOpen && "-rotate-45 -translate-y-2"
                 )}
               />
@@ -168,37 +169,26 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="overflow-hidden border-b border-[#1E293B] bg-[#06080F]/95 backdrop-blur-xl md:hidden"
+            className="overflow-hidden border-b border-white/80 bg-white/95 backdrop-blur-2xl md:hidden shadow-lg"
           >
-            <Container className="py-6 flex flex-col gap-3">
-              {navLinks.map((item) => {
-                const isActive =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname?.startsWith(item.href);
+            <Container className="py-5 flex flex-col gap-2">
+              {navLinks.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-between rounded-xl px-4 py-2 text-sm font-medium text-[#334155] hover:bg-indigo-50/60 hover:text-[#6366F1] transition-colors"
+                >
+                  <span>{item.label}</span>
+                  <span className="text-xs text-[#94A3B8]">↗</span>
+                </Link>
+              ))}
 
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={cn(
-                      "flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium transition-colors",
-                      isActive
-                        ? "bg-[#0E1322] text-[#00D2FF] border border-[#1E293B]"
-                        : "text-[#94A3B8] hover:bg-[#0E1322] hover:text-white"
-                    )}
-                  >
-                    <span>{item.label}</span>
-                  </Link>
-                );
-              })}
-
-              <div className="pt-3 border-t border-[#1E293B]">
+              <div className="pt-2 border-t border-slate-100 mt-1">
                 <Link
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="block text-center rounded-full btn-gradient-violet py-2.5 text-xs font-semibold text-white tracking-wider"
+                  className="block text-center rounded-full bg-[#0F172A] py-2.5 text-xs font-semibold text-white tracking-wider shadow-md"
                 >
                   Let&apos;s Talk ↗
                 </Link>

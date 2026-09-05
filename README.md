@@ -65,9 +65,15 @@ I BUILD OPPORTUNITIES.
 
 ## 🛠️ Technology Stack & Engineering Standards
 
-- **Core Framework**: [Next.js 16](https://nextjs.org/) (App Router, Server Components by default, SSG static pre-rendering)
+- **Core Framework**: [Next.js 16](https://nextjs.org/) (App Router, Server Components by default, SSG static pre-rendering with Turbopack)
 - **Runtime & UI**: [React 19](https://react.dev/), [TypeScript 5](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with a curated dark charcoal foundation (`#0A0A0B`) and warm amber accent (`#C8A96E`)
+- **Design System & Styling**: Ethereal **Liquid Glass & Porcelain** aesthetic built with [Tailwind CSS v4](https://tailwindcss.com/)
+  - Base foundation: Crisp porcelain white (`#F8F9FD`)
+  - Atmospheric layers: Translucent 3D flowing liquid glass ribbons, refractions, and caustics (`/glass-ribbon-bg.jpg`)
+  - Multi-stop atmospheric radial glows in soft lavender (`rgba(196, 181, 253, 0.45)`), sky blue (`rgba(186, 230, 253, 0.4)`), and violet mist (`rgba(221, 214, 254, 0.45)`)
+  - Ultra-frosted glass cards (`.glass-card`) with specular white bevel borders and multi-layer elevation
+  - Deep slate typography (`#0F172A`) with vivid periwinkle/violet accents (`#6366F1` → `#8B5CF6`)
+  - 3D translucent liquid crystal assets: floating water droplet sphere (`/glass-sphere.png`) and ribbon knot (`/glass-knot.png`)
 - **Animation & Transitions**: [Framer Motion 13](https://www.framer.com/motion/) with GPU-accelerated transforms (`transform`, `opacity`) and strict `prefers-reduced-motion` compliance
 - **Smooth Scrolling**: [Lenis](https://github.com/darkroomengineering/lenis)
 - **Typography**: [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) (Display) & [Inter](https://fonts.google.com/specimen/Inter) (Body) via `next/font`

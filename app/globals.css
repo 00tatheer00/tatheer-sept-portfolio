@@ -1,53 +1,54 @@
 @import "tailwindcss";
 
 /* ──────────────────────────────────────────────────────────────
-   DESIGN TOKENS — S Tatheer Hussain Portfolio
-   A sophisticated dark-first design system.
+   DESIGN TOKENS — Liquid Glass & Ethereal Porcelain System
+   1000% Faithful to Reference Image Specification:
+   - Luminous porcelain white & soft lavender-mist background
+   - Translucent 3D liquid glass ribbons, caustics, and refractions
+   - Ultra-frosted glass cards with specular white bevel borders
+   - Deep slate typography with vivid periwinkle/indigo accents
    ────────────────────────────────────────────────────────────── */
 
 @theme {
-  /* ── Color System (Directly from Reference Specification) ──── */
+  /* ── Color System ──────────────────────────────────────────── */
 
-  /* Foundation: Deep navy / dark blue-black */
-  --color-background: #06080F;
-  --color-background-alt: #0A0E1A;
-  --color-surface: #0E1322;
-  --color-surface-hover: #151C30;
-  --color-card: #0D1220;
-  --color-card-hover: #141A2E;
+  /* Base Foundation: Crisp porcelain & soft lavender */
+  --color-background: #F8F9FD;
+  --color-background-alt: #F1F4FA;
+  --color-surface: rgba(255, 255, 255, 0.75);
+  --color-surface-hover: rgba(255, 255, 255, 0.95);
+  --color-card: rgba(255, 255, 255, 0.78);
+  --color-card-hover: rgba(255, 255, 255, 0.95);
 
-  /* Text hierarchy */
-  --color-foreground: #FFFFFF;
-  --color-foreground-secondary: #CBD5E1;
-  --color-foreground-muted: #94A3B8;
-  --color-foreground-subtle: #64748B;
+  /* Deep slate text hierarchy */
+  --color-foreground: #0F172A;
+  --color-foreground-secondary: #334155;
+  --color-foreground-muted: #64748B;
+  --color-foreground-subtle: #94A3B8;
 
-  /* Borders */
-  --color-border: #1E293B;
-  --color-border-hover: #334155;
-  --color-border-active: #00D2FF;
+  /* Specular glass borders */
+  --color-border: rgba(255, 255, 255, 0.85);
+  --color-border-subtle: rgba(226, 232, 240, 0.8);
+  --color-border-hover: rgba(99, 102, 241, 0.35);
+  --color-border-active: #6366F1;
 
-  /* Futuristic Vibrant Accents */
-  --color-cyan: #00D2FF;
+  /* Vibrant Accents from Reference */
+  --color-indigo: #6366F1;
+  --color-violet: #7C3AED;
+  --color-purple: #8B5CF6;
   --color-blue: #3B82F6;
-  --color-violet: #8B5CF6;
-  --color-purple: #A855F7;
-  --color-magenta: #EC4899;
-  --color-orange: #F97316;
-  --color-gold: #FBBF24;
+  --color-cyan: #0EA5E9;
+  --color-pink: #EC4899;
+  --color-amber: #F59E0B;
 
-  /* Primary Accent: Electric Cyan */
-  --color-accent: #00D2FF;
-  --color-accent-hover: #38BDF8;
-  --color-accent-muted: rgba(0, 210, 255, 0.15);
-  --color-accent-subtle: rgba(0, 210, 255, 0.08);
-
-  /* Secondary Accent: Vivid Violet */
-  --color-accent-violet: #8B5CF6;
-  --color-accent-violet-muted: rgba(139, 92, 246, 0.15);
+  /* Primary Accent: Periwinkle / Indigo */
+  --color-accent: #6366F1;
+  --color-accent-hover: #4F46E5;
+  --color-accent-muted: rgba(99, 102, 241, 0.12);
+  --color-accent-subtle: rgba(99, 102, 241, 0.06);
 
   /* Focus */
-  --color-focus: #00D2FF;
+  --color-focus: #6366F1;
 
   /* Status */
   --color-success: #10B981;
@@ -60,49 +61,46 @@
   --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
 
   /* ── Spacing Scale ─────────────────────────────────────────── */
-  --spacing-section: 7rem;
-  --spacing-section-sm: 4.5rem;
+  --spacing-section: 6rem;
+  --spacing-section-sm: 4rem;
 
   /* ── Container ─────────────────────────────────────────────── */
-  --container-max: 1240px;
-  --container-wide: 1380px;
+  --container-max: 1200px;
+  --container-wide: 1360px;
   --container-narrow: 760px;
 
   /* ── Border Radius ─────────────────────────────────────────── */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+  --radius-3xl: 2.25rem;
   --radius-full: 9999px;
 
-  /* ── Shadows & Futuristic Atmospheric Glows ─────────────────── */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.6);
-  --shadow-glow-cyan: 0 0 25px rgba(0, 210, 255, 0.25);
-  --shadow-glow-violet: 0 0 30px rgba(139, 92, 246, 0.25);
-  --shadow-glow-portal: 0 0 50px rgba(0, 210, 255, 0.35), 0 0 80px rgba(139, 92, 246, 0.3);
+  /* ── Liquid Glass Shadows & Glows ──────────────────────────── */
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.08);
+  --shadow-glass: 0 12px 36px rgba(99, 102, 241, 0.08), 0 2px 6px rgba(15, 23, 42, 0.03);
+  --shadow-glass-hover: 0 20px 48px rgba(99, 102, 241, 0.15), 0 4px 10px rgba(15, 23, 42, 0.04);
 
   /* ── Motion ────────────────────────────────────────────────── */
   --duration-fast: 150ms;
   --duration-base: 300ms;
   --duration-slow: 500ms;
-  --duration-slower: 800ms;
 
   --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
   --ease-spring: cubic-bezier(0.33, 1, 0.68, 1);
-  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* ── Z-Index Scale ─────────────────────────────────────────── */
+  /* ── Z-Index ───────────────────────────────────────────────── */
   --z-base: 0;
   --z-dropdown: 10;
   --z-sticky: 20;
   --z-overlay: 30;
   --z-modal: 40;
   --z-cursor: 50;
-  --z-toast: 60;
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -114,6 +112,7 @@
 *::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -126,54 +125,27 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Disable smooth scroll for reduced-motion users */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
 body {
   min-height: 100dvh;
   overflow-x: hidden;
-  background-color: var(--color-background);
-}
-
-/* ── Focus Styles ────────────────────────────────────────────── */
-
-:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 2px;
-  border-radius: var(--radius-sm);
-}
-
-:focus:not(:focus-visible) {
-  outline: none;
+  background-color: #F8F9FD;
+  color: #0F172A;
+  position: relative;
 }
 
 /* ── Typography Base ─────────────────────────────────────────── */
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--color-foreground);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #0F172A;
 }
 
 p {
-  line-height: 1.7;
-  color: var(--color-foreground-secondary);
-  max-width: 65ch;
+  line-height: 1.65;
+  color: #64748B;
 }
 
 a {
@@ -184,179 +156,133 @@ a {
 /* ── Selection ───────────────────────────────────────────────── */
 
 ::selection {
-  background-color: var(--color-accent-muted);
-  color: var(--color-foreground);
+  background-color: rgba(99, 102, 241, 0.2);
+  color: #0F172A;
 }
 
 /* ── Scrollbar ───────────────────────────────────────────────── */
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #F1F4FA;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: var(--radius-full);
+  background: #CBD5E1;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-border-hover);
+  background: #94A3B8;
 }
 
-/* ── Background Grid ─────────────────────────────────────────── */
+/* ── Reference-Matched Liquid Glass & Neumorphic Classes ──────── */
 
-.bg-grid {
-  background-image:
-    linear-gradient(var(--color-border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
-  background-size: 60px 60px;
-  opacity: 0.3;
-}
-
-.bg-grid-fine {
-  background-image:
-    linear-gradient(var(--color-border) 0.5px, transparent 0.5px),
-    linear-gradient(90deg, var(--color-border) 0.5px, transparent 0.5px);
-  background-size: 30px 30px;
-  opacity: 0.2;
-}
-
-/* ── Noise Texture ───────────────────────────────────────────── */
-
-.bg-noise::after {
-  content: "";
+/* Main Ethereal Liquid Glass Background — 1000% Match with Reference */
+.liquid-glass-background {
   position: fixed;
   inset: 0;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
+  background-color: #F8F9FD;
+  background-image:
+    radial-gradient(circle at 88% 12%, rgba(196, 181, 253, 0.42), transparent 45%),
+    radial-gradient(circle at 10% 38%, rgba(186, 230, 253, 0.38), transparent 42%),
+    radial-gradient(circle at 85% 75%, rgba(221, 214, 254, 0.45), transparent 50%),
+    radial-gradient(circle at 45% 55%, rgba(243, 232, 255, 0.3), transparent 60%),
+    url('/glass-ribbon-bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.92;
 }
 
-/* ── Gradient Overlays ───────────────────────────────────────── */
-
-.gradient-fade-bottom {
-  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+/* Luminous liquid glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.gradient-fade-top {
-  mask-image: linear-gradient(to top, black 60%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, black 60%, transparent 100%);
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 16px 40px rgba(99, 102, 241, 0.1), 0 2px 6px rgba(15, 23, 42, 0.03);
+  transform: translateY(-2px);
 }
 
-/* ── Utility: Custom Cursor Enhancement ─────────────────────── */
-/* Native OS pointer is preserved for 100% latency-free responsiveness.
-   Custom follower operates purely as an ambient accent via pointer-events: none. */
-
-/* ── Utility: Text balance ───────────────────────────────────── */
-
-.text-balance {
-  text-wrap: balance;
+/* Ultra-frosted pill container */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
 }
 
-.text-pretty {
-  text-wrap: pretty;
+/* Reference Button: Primary Black Pill */
+.btn-primary-pill {
+  background: #0F172A;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.2);
+  transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* ── Signature Engineering Accents ───────────────────────────── */
-
-.engineering-crosshair {
-  position: relative;
+.btn-primary-pill:hover {
+  background: #1E293B;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.3);
+  transform: translateY(-1px);
 }
 
-.engineering-crosshair::before,
-.engineering-crosshair::after {
-  content: "+";
-  position: absolute;
+/* Reference Button: Frosted Glass White Pill */
+.btn-glass-pill {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #0F172A;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 9999px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.btn-glass-pill:hover {
+  background: #FFFFFF;
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 8px 22px rgba(99, 102, 241, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Reference Text Gradient: Periwinkle / Violet */
+.text-gradient-hero {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #4F46E5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Section Tag Badges */
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--color-accent);
-  opacity: 0.4;
-  pointer-events: none;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #6366F1;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 9999px;
+  padding: 0.35rem 0.85rem;
 }
-
-.engineering-crosshair::before {
-  top: -6px;
-  left: -6px;
-}
-
-.engineering-crosshair::after {
-  bottom: -6px;
-  right: -6px;
-}
-
-/* ── Reference-Matched Futuristic Gradient Utilities ─────────── */
-
-.text-gradient-cyan-blue {
-  background: linear-gradient(135deg, #00D2FF 0%, #3B82F6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-cyan-violet {
-  background: linear-gradient(135deg, #00F0FF 0%, #8B5CF6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-violet-magenta {
-  background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-orange-gold {
-  background: linear-gradient(135deg, #F97316 0%, #FBBF24 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Primary Button Gradient (Explore My Work / Let's Talk) */
-.btn-gradient-primary {
-  background: linear-gradient(135deg, #6366F1 0%, #3B82F6 50%, #00D2FF 100%);
-  color: #FFFFFF;
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
-  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.btn-gradient-primary:hover {
-  box-shadow: 0 6px 28px rgba(0, 210, 255, 0.5);
-  transform: translateY(-1px);
-}
-
-.btn-gradient-violet {
-  background: linear-gradient(135deg, #7C3AED 0%, #2563EB 100%);
-  color: #FFFFFF;
-  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35);
-  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.btn-gradient-violet:hover {
-  box-shadow: 0 6px 28px rgba(139, 92, 246, 0.5);
-  transform: translateY(-1px);
-}
-
-/* Card Glow Treatments */
-.card-futuristic {
-  background: #0D1220;
-  border: 1px solid #1E293B;
-  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.card-futuristic:hover {
-  border-color: #334155;
-  background: #12182B;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 210, 255, 0.08);
-}
-
-/* Cursive font utility */
-.font-script {
-  font-family: var(--font-script), "Caveat", cursive, sans-serif;
-}
-
-
